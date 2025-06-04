@@ -6,7 +6,7 @@ pipeline{
 	stages{
 		stage('Checkout'){
 			steps{
-				git branch:'master',url:'https://github.com/chandrashekardn/MavenAnsibleWebApp.git'
+				git branch: 'master', url: 'https://github.com/chandrashekardn/MavenAnsibleWebApp.git'
 			}
 		}
 		stage('Build'){
@@ -16,7 +16,7 @@ pipeline{
 		}
 		stage('Archive'){
 			steps{
-				archiveArtifacts artifacts:'target/*.war',fingerprint:true
+				archiveArtifacts artifacts: 'target/*.war', fingerprint:true
 			}
 		}
 		stage('Deploy'){
@@ -25,6 +25,5 @@ pipeline{
 				sh 'ansible-playbook ansible/playbook.yml -i ansible/hosts.ini'
 			}
 		}
-		
 	}
 }
